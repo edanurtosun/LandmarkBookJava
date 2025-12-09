@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.edanurtosun.landmarkbookjava.databinding.ActivityMainBinding;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+    //static Landmark chosenLandmark; //static olusturulan degisken, her yerden ulasilabilir
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
         landmarkArrayList.add(colosseum);
         landmarkArrayList.add(londonBridge);
 
+        /*RecyclerView Kullanımı-START*/
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LandmarkAdapter landmarkAdapter = new LandmarkAdapter(landmarkArrayList);
+
+        binding.recyclerView.setAdapter(landmarkAdapter);
+        /*RecyclerView Kullanımı-END*/
+
+        /*
         //Adapter
          //ListView
 
@@ -60,6 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("landmark", landmarkArrayList.get(position));
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }
